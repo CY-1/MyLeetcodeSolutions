@@ -1,0 +1,2 @@
+# MyLeetcodeSolutions
+记录一个python菜鸡刷leetcode的心碎之路
