@@ -1,0 +1,21 @@
+class Solution:
+    def setZeroes(self, matrix):
+        """
+        Do not return anything, modify matrix in-place instead.
+        """
+        m=len(matrix)
+        if m==0:
+            return 
+        n=len(matrix[0])
+        a=[]
+       
+        for i in range(m):
+            for j in range(n):
+                if matrix[i][j]==0:
+                    a.append([i,j])
+        for i in range(len(a)):
+            matrix[a[i][0]]=[0]*n
+            for j in range(m):
+                matrix[j][a[i][1]]=0
+# 用一个列表a记录 matrix中为0的下标
+# 遍历a列表a 然后对横轴和纵轴进行置零操作
