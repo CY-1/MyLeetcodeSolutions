@@ -1,0 +1,20 @@
+class Solution:
+    def combine(self, n: int, k: int):
+        result = []
+
+        def my(index, total):
+            if len(total) == k:
+                result.append(total[:])
+                return
+            for i in range(index, n+1):
+                total.append(i)
+                my(i + 1, total)
+                total.pop()
+
+
+        my(1, [])
+        return result
+
+
+Solution().combine(4, 2)
+# 利用回溯写法
