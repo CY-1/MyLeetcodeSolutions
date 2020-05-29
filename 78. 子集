@@ -23,3 +23,5 @@ class Solution:
 
         helper(0, [])
         return res
+
+# 利用下标只能向后
