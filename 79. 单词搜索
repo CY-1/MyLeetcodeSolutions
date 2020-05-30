@@ -1,0 +1,34 @@
+class Solution:
+
+    def exist(self, board, word) -> bool:
+        n = len(board)
+        if n == 0:
+            return False
+        m = len(board[0])
+        used = [[0] * m for i in range(n)]
+        directions = [(0, -1), (-1, 0), (0, 1), (1, 0)]
+
+        def my(x, y, total):
+            if len(total) == 1:
+                return total[0] == board[x][y]
+            if board[x][y] == total[0]:
+                used[x][y] = 1
+                for i in directions:
+                    a = x + i[0]
+                    b = y + i[1]
+                    if a >= 0 and b >= 0 and a < n and b < m and total[1] == board[a][b] and used[a][b] == 0 and my(a,
+                                                                                                                    b,
+                                                                                                                    total[
+                                                                                                                    1:]):
+                        return True
+                used[x][y] = 0
+            return False
+
+        for i in range(n):
+            for j in range(m):
+                used = [[0] * m for i in range(n)]
+                if my(i, j, word):
+                    return True
+        return False
+# 回溯法 遍历所有可能
+# 设当前位置为x y,就验证x，y的上下左右可不可行，如果不可行，就回退到x y，的之前一个位置，如果 x y是起始位置就返回False；如果可行就继续验证可行位置的上下左右
