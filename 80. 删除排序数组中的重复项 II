@@ -1,0 +1,21 @@
+class Solution:
+    def removeDuplicates(self, nums) -> int:
+        count = 1
+        nums_length=len(nums)
+        result = []
+        if nums_length<=2:
+            return nums_length
+        for i in range(1,nums_length):
+            if nums[i]==nums[i-1]:
+                count+=1
+            else:
+                count=1
+            if count>2:
+                result.append(i-1)
+
+        for i in result[::-1]:
+            nums.pop(i)
+        print(nums)
+        return len(nums)
+# 遍历list 记录元素出现的次数 如果有超过两次的出现 就记录其下标 
+# 删除result注意从后向前删除 不然因为长度改变 导致出错
