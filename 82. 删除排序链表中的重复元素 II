@@ -1,0 +1,31 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def deleteDuplicates(self, head: ListNode) -> ListNode:
+        start = ListNode(0)
+        start.next=head
+        a=start
+        b=a.next
+        flag=0
+        while b!=None:
+            while b.next!=None and b.val==b.next.val:
+                b=b.next
+                flag=1
+            if flag==1:
+                a.next=b.next
+                b=a.next
+                flag=0
+            else:
+                a=a.next
+                b=a.next
+        return start.next
+            
+  # 双指针法
+  # a当做前节点 b是后节点
+  # 如果b节点有值相同就一直向后 直到找到不同的值或者是None
+  # 然后把上一步找到的节点接在a后面
+  # 当链表接好后 a向后挪动一位 b也对应挪动一位
