@@ -1,0 +1,19 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def deleteDuplicates(self, head: ListNode) -> ListNode:
+        index = head
+        while index!=None:
+            total=index
+            while total!=None and total.next!=None and total.val==total.next.val:
+                total=total.next
+            index.next=total.next
+            index=index.next
+        return head
+# 从前到后遍历链表 
+# 每个节点就查找一次下一个与自己不同的节点的位置
+# 然后借到当前节点的后面
