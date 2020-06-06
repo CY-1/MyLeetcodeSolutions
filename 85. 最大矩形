@@ -1,0 +1,38 @@
+class Solution:
+    def maximalRectangle(self, matrix) -> int:
+
+        def my(heights):
+            stack = []
+            heights_length = len(heights)
+            result = 0
+            for i in range(heights_length):
+                while stack and heights[stack[-1]] > heights[i]:
+                    index = stack.pop()
+                    if stack == []:
+                        width = i
+                    else:
+                        width = i - stack[-1] - 1
+                    result = max(width * heights[index], result)
+                stack.append(i)
+            while stack:
+                index = stack.pop()
+                if stack == []:
+                    width = heights_length
+                else:
+                    width = heights_length - stack[-1] - 1
+                result = max(width * heights[index], result)
+            return result
+
+        result = 0
+        for i in range(len(matrix)):
+            for j in range(len(matrix[i])):
+                matrix[i][j]=int(matrix[i][j])
+                a=i
+                while matrix[i][j]!=0 and matrix[a-1][j]!=0 and a>0:
+                    a-=1
+                    matrix[i][j]+=1
+        for i in matrix:
+            result = max(my(i),result)
+        return result
+        
+ ### 就是把84题转化一下 把matrix转化一下成84题就可以了
