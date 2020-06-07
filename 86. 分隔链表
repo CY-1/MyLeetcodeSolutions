@@ -1,0 +1,36 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def partition(self, head: ListNode, x: int) -> ListNode:
+        if head==None:
+            return head
+        if head.next==None:
+            return  head
+        b=ListNode(None)
+        b.next=head
+        total1=b
+        
+        while total1.next!=None and total1.next.val<x:
+            total1=total1.next
+        total2=total1.next
+        if total2==None:
+            return head
+        
+        while total2.next!=None:
+            if total2.next.val<x:
+                a=total2.next
+                total2.next=total2.next.next
+                a.next=total1.next
+                total1.next=a
+                total1=a
+                continue
+            total2=total2.next
+        return b.next
+
+                  
+# 先找到大于或等于 x 的节点也就是total1.next
+# 然后遍历total1.next的后面的节点 如果小于x就原地删除 然后插入在total1.next，同时total1要等于新插入的节点
