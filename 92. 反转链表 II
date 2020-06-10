@@ -1,0 +1,30 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def reverseBetween(self, head: ListNode, m: int, n: int) -> ListNode:
+        m_index=ListNode(None)
+        begin=m_index
+        m_index.next=head
+        i=0
+        while m_index.next!=None and i!=m-1:
+            m_index=m_index.next
+            i+=1
+        i=0
+        n_index=m_index.next
+        #print(n_index.val)
+        while n_index.next!=None and i!=n-m:
+            a=n_index.next
+            n_index.next=n_index.next.next
+            a.next=m_index.next
+            m_index.next=a
+            i+=1
+        return begin.next
+
+# 找到m对应的节点的前面一个 记录为m_index
+# 然后从m节点本身开始向后遍历 记录为n_index
+# 遍历n-m次 然后进行链表的操作 
+# 记得返回begin.next 防止两个几点的翻转出现错误解答
