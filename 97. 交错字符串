@@ -30,3 +30,28 @@ class Solution:
 
 # s1s1的前ii个字符和s2s2的前j-1j−1个字符能否构成s3s3的前i+j-1i+j−1位，且s2s2的第jj位（s2[j-1]s2[j−1]）是否等于s3s3的第i+ji+j位（s3[i+j-1]s3[i+j−1]）。
 #返回dp[-1][-1]dp[−1][−1]
+
+
+class Solution:
+    def isInterleave(self, s1: str, s2: str, s3: str) -> bool:
+        import functools
+        n1 = len(s1)
+        n2 = len(s2)
+        n3 = len(s3)
+        @functools.lru_cache(None)
+        def helper(i, j, k):
+            if i == n1 and j == n2 and k == n3:
+                return True
+            if i < n1 and j < n2 and k < n3 and s1[i] == s2[j] == s3[k]:
+                if helper(i + 1, j, k + 1) or helper(i, j + 1, k + 1):
+                    return True
+            elif i < n1 and k < n3 and s1[i] == s3[k]:
+                if helper(i + 1, j, k + 1):
+                    return True
+            elif j < n2 and k < n3 and s2[j] == s3[k]:
+                if helper(i, j + 1, k + 1):
+                    return True
+            return False
+        return helper(0, 0, 0)
+# 见到别人用装饰器然后暴力法的
+
