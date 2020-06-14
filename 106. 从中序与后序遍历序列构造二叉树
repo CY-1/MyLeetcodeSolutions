@@ -1,0 +1,22 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+
+class Solution:
+    def buildTree(self, inorder, postorder):
+        def my(a_left,a_right,b_left,b_right):
+            if b_left>b_right:
+                return None
+            root = TreeNode(postorder[b_right])
+            tree_left=inorder.index(postorder[b_right])
+            size=tree_left-a_left
+            root.left = my(a_left,tree_left-1,b_left,b_left+size-1)
+            root.right= my(tree_left+1,a_right,b_left+size,b_right-1)
+            return root
+        return my(0,len(inorder)-1,0,len(postorder)-1)
+# 和105题一样的思路 找到更节点的左右字数 然后递归 
+# 详细看105题
