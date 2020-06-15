@@ -18,4 +18,4 @@ class Solution:
                 my(deepth+1, tree.right)
         my(0,root)
         return result[::-1]
-# 不必修改遍历过程 修改遍历结果即可
+# 相对于102题 不必修改遍历过程 修改遍历结果即可
