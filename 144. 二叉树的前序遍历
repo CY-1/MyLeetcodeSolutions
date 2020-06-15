@@ -1,0 +1,26 @@
+class Solution(object):
+    def preorderTraversal(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        if root is None:
+            return []
+        
+        stack, output = [root, ], []
+        
+        while stack:
+            root = stack.pop()
+            if root is not None:
+                output.append(root.val)
+                if root.right is not None:
+                    stack.append(root.right)
+                if root.left is not None:
+                    stack.append(root.left)
+        
+        return output
+# 这是使用栈 递归太基础 就不贴出来了
+# 从根节点开始，每次迭代弹出当前栈顶元素，并将其孩子节点压入栈中，先压右孩子再压左孩子。
+
+# 在这个算法中，输出到最终结果的顺序按照 Top->Bottom 和 Left->Right，符合前序遍历的顺序。
+
