@@ -16,3 +16,4 @@ class Solution:
         return my(root,0)
 
 # 遍历 记录当前的路径的值
+# 可修改遍历方法 提升性能
