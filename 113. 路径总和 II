@@ -1,0 +1,22 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def pathSum(self, root: TreeNode, sum: int) -> List[List[int]]:
+        result=[]
+        def my(total,tree,my_list):
+
+            if tree!=None:
+                a=my_list[:]
+                a.append(tree.val)
+                if total+tree.val==sum  and a!=[] and tree.left==None and tree.right==None:
+                    result.append(a)
+                my(total+tree.val,tree.left,a[:])
+                my(total+tree.val,tree.right,a[:])
+        my(0,root,[])
+        return result
+# 遍历二叉树 记录路径 当是叶子节点的时候就放入result中
