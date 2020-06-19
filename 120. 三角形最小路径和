@@ -1,0 +1,33 @@
+class Solution(object):
+    def minimumTotal(self, triangle):
+        """
+        :type triangle: List[List[int]]
+        :rtype: int
+        """
+        n=len(triangle)
+        for row in range(n-2,-1,-1):
+            for col in range(len(triangle[row])):
+                triangle[row][col]+=min(triangle[row+1][col],triangle[row+1][col+1])
+        return triangle[0][0]
+# 暴力法超时了  贴一个别人的写法
+#以
+#[
+#[2],
+#[3,4],
+#[6,5,7],
+#[4,1,8,3]
+#]
+#为例：
+
+#第一次对倒数第二行操作，6变成6+min(4,1)=7，5变成5+min(1,8)=6，7变成7+min(8,3)=10；这应该很好理解，当你选择的路径让你到达6时，接下来你可以选择4或者1，那么你自然会选择更小的1；当你选择的路径让你到达5时，接下来你可以选择1或者8，那么你自然会选择更小的1；当你选择的路径让你到达7时，接下来你可以选择8或者3，那么你自然会选择更小的3。
+
+#因此，可以把原来的lists变成
+#[
+#[2],
+#[3,4],
+#[7,6,10],
+#[4,1,8,3]
+#]
+
+
+#链接：https://leetcode-cn.com/problems/triangle/solution/zi-di-xiang-shang-dong-tai-gui-hua-lei-si-yu-cong-/
