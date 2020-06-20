@@ -1,0 +1,15 @@
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        s=s.lower()
+        result=[]
+        for i in s:
+            if i.isalnum():
+                result.append(i)
+        return result==result[::-1]
+# 找到数字和字母 然后翻转比较
+
+# 官方的更简洁
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        sgood = "".join(ch.lower() for ch in s if ch.isalnum())
+        return sgood == sgood[::-1]
