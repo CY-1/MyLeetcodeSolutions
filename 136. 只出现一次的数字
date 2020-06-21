@@ -1,0 +1,5 @@
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        return reduce(lambda x, y: x ^ y, nums)
+# 官方的算法 比较符合要求
+# 直接位运算 只出现一次的是最后结果
