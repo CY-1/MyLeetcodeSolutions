@@ -1,0 +1,15 @@
+class Solution:
+    def longestConsecutive(self, nums: List[int]) -> int:
+        result=[]
+        for i in nums:
+            total=i+1
+            if total-2 not in nums:
+                while total in nums:
+                    total+=1
+            result.append(total-i)
+        if not result:
+            return 0
+        return max(result)
+# 遍历nums，取名i   暴力查询 i+1 i+2....是否在列表中
+# 但是要时间复杂度爆炸   要去重
+# 所以我们设置 i-1 不在nums里面，以此减少重复
