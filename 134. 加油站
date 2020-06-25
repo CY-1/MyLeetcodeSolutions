@@ -1,0 +1,64 @@
+class Solution:
+    def canCompleteCircuit(self, gas, cost):
+        gas_length=len(gas)
+        cost_length=len(cost)
+        for i in range(gas_length):
+            total=gas[i]
+            j=(i+1)%cost_length
+            old_j=j
+            while True:
+                total-=cost[j-1]
+                if total<0:
+                    break
+                j=(j+1)%cost_length
+                total+=gas[j-1]
+                if j==old_j:
+                    return i
+        return -1
+# 记录初始位置 按照题目要求遍历 
+# 如果能回到原来的位置 就返回初始位置 不行就返回-1
+
+
+
+# 复制一个性能更高的官方题解
+class Solution:
+    def canCompleteCircuit(self, gas, cost):
+        """
+        :type gas: List[int]
+        :type cost: List[int]
+        :rtype: int
+        """
+        n = len(gas)
+        
+        total_tank, curr_tank = 0, 0
+        starting_station = 0
+        for i in range(n):
+            total_tank += gas[i] - cost[i]
+            curr_tank += gas[i] - cost[i]
+            # If one couldn't get here,
+            if curr_tank < 0:
+                # Pick up the next station as the starting one.
+                starting_station = i + 1
+                # Start with an empty tank.
+                curr_tank = 0
+        
+        return starting_station if total_tank >= 0 else -1
+
+# https://leetcode-cn.com/problems/gas-station/solution/jia-you-zhan-by-leetcode/
+#可以将两个数组 gasgas 和 costcost 看成一个数组，即 a[i]=gas[i]-cost[i]a[i]=gas[i]−cost[i]，从某点出发，统计 aa 的连续和 sumsum，当此时的 sum<0sum<0 时说明无法通行.
+
+#从每一个点出发，依次扫描复杂度是 O(n^2)O(n 2)，可以进行如下优化.
+
+#假设结点总数为 nn，从结点 0 出发，sumsum 即为 aa 的前缀和，即 sum[i]=a[0]+a[1]+...a[i]sum[i]=a[0]+a[1]+...a[i].
+
+#求出 sumsum 的最小值，假设为 sum[i]sum[i]，如果此时的 sum[n-1]>=0sum[n−1]>=0 那么只需要从 i+1i+1 位置出发，一定是合法的.
+
+#反证法证明如下：
+
+#假设从 i+1i+1 出发，如果在 i+1i+1 的右边某个位置 jj 出现了无法通行的情况，即 sum[j]-sum[i]<0sum[j]−sum[i]<0，移项得 sum[j]<sum[i]sum[j]<sum[i]，这是不可能的，因为 sum[i]sum[i] 是最小值，前后矛盾.
+
+#如果在 i+1i+1 的左边某个位置 jj 出现了无法通行的情况，即 sum[n-1]-sum[i]+sum[j]<0sum[n−1]−sum[i]+sum[j]<0，移项得 (sum[j]-sum[i])+sum[n-1]<0(sum[j]−sum[i])+sum[n−1]<0，也是不可能的，因为假设中 sum[n-1]>=0sum[n−1]>=0 且 sum[i]sum[i] 是最小值，那么也一定有 sum[j]-sum[i]>=0sum[j]−sum[i]>=0 ，两个非负项相加一定还是非负的，前后矛盾.
+
+# 优化之后的方法，只需要求出 sumsum 以及它的最小值下标，时间复杂度 O(n)O(n).
+
+
