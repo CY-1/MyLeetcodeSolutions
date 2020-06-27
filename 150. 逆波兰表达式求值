@@ -1,0 +1,13 @@
+class Solution:
+    def evalRPN(self, tokens: List[str]) -> int:
+        nums=[]
+        for i in tokens:
+            if i in "+-*/":
+                a=nums.pop()
+                b=nums.pop()
+                nums.append(str(int(eval(b+i+a))))
+            else:
+                nums.append(i)
+        return int(nums[0])
+
+# 数据结构里面栈的应用
