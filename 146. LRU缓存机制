@@ -1,0 +1,60 @@
+class LRUCache:
+
+    def __init__(self, capacity: int):
+        import collections
+
+        self.dic = collections.OrderedDict()
+        self.capacity=capacity
+
+    def get(self, key: int) -> int:
+        a=self.dic.get(key,-1)
+        if a!=-1:
+            self.dic.move_to_end(key)
+            return a
+        else:
+            return -1
+
+    def put(self, key: int, value: int) -> None:
+        self.dic[key]=value
+        self.dic.move_to_end(key)
+        if len(self.dic)>self.capacity:
+            self.dic.popitem(last=False)
+## 使用有序字典完成
+
+
+# Your LRUCache object will be instantiated and called as such:
+# obj = LRUCache(capacity)
+# param_1 = obj.get(key)
+# obj.put(key,value)
+
+# 普通的暴力法
+class LRUCache:
+
+    def __init__(self, capacity: int):
+        self.capacity=capacity
+        self.a=[]
+
+    def get(self, key: int) -> int:
+        for i in self.a:
+            if i[0]==key:
+                self.a.remove(i)
+                self.a.append(i)
+                return i[1]
+        return -1
+
+    def put(self, key: int, value: int) -> None:
+        for i in self.a:
+            if i[0]==key:
+                self.a.remove(i)
+                self.a.append((i[0],value))
+                return 
+        if len(self.a)>=self.capacity:
+            self.a.pop(0)
+        self.a.append((key,value))
+
+
+
+# Your LRUCache object will be instantiated and called as such:
+# obj = LRUCache(capacity)
+# param_1 = obj.get(key)
+# obj.put(key,value)
