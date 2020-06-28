@@ -1,0 +1,33 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def insertionSortList(self, head: ListNode) -> ListNode:
+        if not head:
+            return []
+        # 加一个额外链表块到头部上去
+        my_head = ListNode(None)
+        my_head.next=head
+        # 已经排序好的链表的尾指针和头指针
+        begin = my_head
+        end = head
+        # 默认head到head是排序完整的 从total开始插入排序
+        total=head.next
+        while total!=None:
+            a=begin
+            # 找到适当的位置
+            while a.next.val<total.val and a!=end:
+                a=a.next
+            if a!=end:
+                end.next=total.next
+                total.next=a.next
+                a.next=total
+                total=end.next
+            # 如果需要插在end后面要特殊处理
+            else:
+                end=total
+                total=total.next
+        return my_head.next
