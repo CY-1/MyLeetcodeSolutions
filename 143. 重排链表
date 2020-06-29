@@ -1,0 +1,38 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def reorderList(self, head: ListNode) -> None:
+        """
+        Do not return anything, modify head in-place instead.
+        """
+        if not head:
+            return 
+        from collections import deque
+        a = deque()
+        b= head.next
+        while b:
+            a.append(b)
+            b=b.next
+        if not a:
+            return 
+        while a:
+            right=a.pop()
+            if not a:
+                head.next=right
+                head=head.next
+                break
+            left=a.popleft()
+            right.next=left
+            head.next=right
+            head=left
+        
+        head.next=None
+# 维护一个类似双向队列的对象
+# 有题意知 就是从这个队列中 左边取一个 右边取一下 然后形成链表
+        
+            
+            
+
