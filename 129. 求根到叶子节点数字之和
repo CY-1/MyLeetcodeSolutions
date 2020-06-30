@@ -1,0 +1,21 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    result=0
+    def sumNumbers(self, root: TreeNode) -> int:
+        
+        def my(node,total):
+            if node!=None:
+                total=node.val+total*10
+                if node.left==None and node.right==None:
+                    self.result+=total
+                my(node.left,total)
+                my(node.right,total)
+        my(root,0)
+        return self.result
+# 递归 我疯狂的递归
