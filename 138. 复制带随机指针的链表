@@ -1,0 +1,42 @@
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, x: int, next: 'Node' = None, random: 'Node' = None):
+        self.val = int(x)
+        self.next = next
+        self.random = random
+"""
+
+class Solution:
+    def copyRandomList(self, head: 'Node') -> 'Node':
+        if not head:
+            return None
+
+        check = {} 
+        # 哈希表存储旧链表节点与新链表节点的对应关系：key 为旧节点，value 为新节点
+
+        old = head
+        while old:
+            # 如果新节点不存在，要先建立新节点
+            if old not in check:
+                check[old] = Node(old.val)
+            
+            # 建立新节点之间的连接关系
+            if old.next:
+                if old.next not in check:
+                    check[old.next] = Node(old.next.val)
+                check[old].next = check[old.next]
+            if old.random:
+                if old.random not in check:
+                    check[old.random] = Node(old.random.val)
+                check[old].random = check[old.random]
+            old = old.next
+
+        return check[head]
+        check[old.random] = Node(old.random.val)
+            check[old].random = check[old.random]
+        old = old.next
+
+# 看一下别人的解题 了解一下思路
+# 链接：https://leetcode-cn.com/problems/copy-list-with-random-pointer/solution/138-fu-zhi-dai-sui-ji-zhi-zhen-de-lian-biao-ha-x-2/
+
