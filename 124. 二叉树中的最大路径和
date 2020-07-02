@@ -1,0 +1,23 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    maxSum = float("-inf")
+    def maxPathSum(self, root: TreeNode) -> int:
+        def my(node):
+            if node==None:
+                return 0
+            # 计算当前节点的左右子树的和
+            left=max(my(node.left),0)
+            right=max(my(node.right),0)
+            # 算出当前节点的最大和
+            self.maxSum=max(node.val+left+right,self.maxSum)
+            return node.val+max(left,right)
+
+        my(root)
+        return self.maxSum
+# 参考官方题解思路
