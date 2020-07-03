@@ -1,0 +1,31 @@
+class Solution:
+    def maxPoints(self, points: List[List[int]]) -> int:
+        new=[]
+        # 去重
+        for i in points:
+            if i not in new:
+                new.append(i)
+        def check(a,b,c):
+            # 检查斜率
+            if a==b or b==c or a==c:
+                return True
+            if a[1]-b[1]==0 or a[1]-c[1]==0:
+                return a[1]-b[1]==a[1]-c[1]
+            return (a[0]-b[0])*1000/(a[1]-b[1])==(a[0]-c[0])*1000/(a[1]-c[1])
+        # 点过少 特殊处理
+        length=len(points)
+        new_length=len(new)
+        if length<3 or new_length<3:
+            return length
+        max_length=0
+        # 暴力法
+        for i in range(new_length):
+            for j in range(i+1,new_length):
+                total=points.count(new[i])+points.count(new[j])
+                for x in range(j+1,new_length):
+                    
+                    if check(new[i],new[j],new[x]):
+                        total+=points.count(new[x])
+                max_length=max(max_length,total)
+        return max_length
+# 暴力法 
