@@ -1,0 +1,35 @@
+class MinStack:
+
+    def __init__(self):
+        """
+        initialize your data structure here.
+        """
+        self.a=[]
+        self.a_min=float('inf')
+
+    def push(self, x: int) -> None:
+        self.a.append(x)
+        # 加入元素的时候检查最小值
+        self.a_min=x if x<self.a_min else self.a_min
+
+    def pop(self) -> None:
+    # 删除元素的时候 重新检查最小值
+        result = self.a[-1]
+        del self.a[-1]
+        if result==self.a_min:
+            self.a_min=min(self.a) if self.a else float('inf')
+        return result
+
+    def top(self) -> int:
+        return self.a[-1]
+
+    def getMin(self) -> int:
+        return self.a_min
+
+
+# Your MinStack object will be instantiated and called as such:
+# obj = MinStack()
+# obj.push(x)
+# obj.pop()
+# param_3 = obj.top()
+# param_4 = obj.getMin()
