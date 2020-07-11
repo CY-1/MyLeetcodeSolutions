@@ -1,0 +1,31 @@
+class Solution:
+    def reverseWords(self, s: str) -> str:
+        s=s.split()
+        s=" ".join(s[::-1])
+        return s
+        # 使用API
+# 自己编写
+class Solution:
+    def reverseWords(self, s: str) -> str:
+        result=[]
+        if not s:
+            return ""
+        flag=0 if s[0]==" " else 1
+        total=""
+        for i in s:
+            if i!=" ":
+                
+                total+=i
+                flag=1
+                continue
+            if i==" " and flag==1:
+                result.append(total+" ")
+                total=""
+                flag=0
+                continue
+        if total and total[0]!=" ":
+            result.append(total+" ")
+        total=""
+        for i in result:
+            total=i+total
+        return total[:-1]
