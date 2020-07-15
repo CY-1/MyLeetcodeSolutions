@@ -1,0 +1,8 @@
+class Solution:
+    def findPeakElement(self, nums: List[int]) -> int:
+        nums_length=len(nums)
+        for i in range(1,nums-1):
+            if nums[i-1]<nums[i]>nums[i+1]:
+                return i
+        return nums.index(max(nums))
+# 或者写个二分查找
