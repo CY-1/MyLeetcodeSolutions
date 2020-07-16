@@ -1,0 +1,49 @@
+class Solution:
+    def compareVersion(self, version1: str, version2: str) -> int:
+        v1_list = version1.split(".")
+        v2_list = version2.split('.')
+        v1_list_length=len(v1_list)
+        v2_list_length=len(v2_list)
+        while True:
+            if v1_list_length==0 and v2_list_length==0:
+                return 0
+            elif v1_list_length==0 and v2_list_length>0:
+                v2_list_length-=1
+                if int(v2_list.pop(0))!=0:
+
+                    return -1
+            elif v1_list_length>0 and v2_list_length==0:
+                v1_list_length-=1
+                if int(v1_list.pop(0))!=0:
+                    return 1
+            else:
+                v1_current = int(v1_list.pop(0))
+                v2_current = int(v2_list.pop(0))
+                if v1_current==v2_current:
+                    v1_list_length-=1
+                    v2_list_length-=1
+                elif v1_current>v2_current:
+                    return 1
+                else:
+                    return -1
+# 第二种
+class Solution:
+    def compareVersion(self, version1: str, version2: str) -> int:
+
+        if not version1 or not version2:
+            return -1
+        
+        v1 = [int(i) for i in version1.split(".")]
+        v2 = [int(i) for i in version2.split(".")]
+
+        if len(v1) > len(v2):
+            v2.extend([0] * (len(v1) - len(v2)))
+        elif len(v1) < len(v2):
+            v1.extend([0] * (len(v2) - len(v1)))
+
+        if v1 == v2:
+            return 0
+        elif v1 > v2:
+            return 1
+        else:
+            return -1
