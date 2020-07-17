@@ -1,0 +1,42 @@
+class Solution:
+    def twoSum(self, numbers, target: int) :
+        numbers_length=len(numbers)
+        for i in range(numbers_length-1):
+            left=i+1
+            right=numbers_length-1
+            target2 = target-numbers[i]
+            if target2<numbers[i+1]:
+                return
+            while left<=right:
+                mid=(left+right)//2
+                if numbers[mid]>target2:
+                    right=mid-1
+                elif numbers[mid]==target2:
+                    return [i+1,mid+1]
+                else:
+                    left=mid+1
+# 自己写的二分查找
+
+
+
+
+
+class Solution:
+    def twoSum(self, numbers: List[int], target: int) -> List[int]:
+        if(not numbers):
+            return []
+        res=[]
+        n=len(numbers)
+        l=0
+        r=n-1
+        while(l<r):
+            if(numbers[l]+numbers[r]==target):
+                return [l+1,r+1]
+            elif(numbers[l]+numbers[r]>target):
+                r=r-1
+            else:
+                l=l+1
+        return [-1,-1]
+
+
+# 链接：https://leetcode-cn.com/problems/two-sum-ii-input-array-is-sorted/solution/shuang-zhi-zhen-fang-fa-he-ji-zhu-xing-jie-shi-pyt/
