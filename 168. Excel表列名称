@@ -1,0 +1,3 @@
+class Solution:
+    def convertToTitle(self, n: int) -> str:
+        return "" if not n else self.convertToTitle(n//26-(0 if n%26 else 1))+" ABCDEFGHIJKLMNOPQRSTUVWXYZ"[n%26 if n%26 else 26]
