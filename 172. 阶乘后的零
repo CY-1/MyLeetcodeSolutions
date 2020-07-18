@@ -1,0 +1,10 @@
+class Solution:
+    def trailingZeroes(self, n: int) -> int:
+        num = 0
+        while n > 0:
+            num += n // 5
+            n = n // 5
+        return num
+
+# 不能直接计算阶乘
+# 链接：https://leetcode-cn.com/problems/factorial-trailing-zeroes/solution/gu-ding-tao-lu-by-yi-wen-statistics/
