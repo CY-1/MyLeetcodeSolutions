@@ -1,0 +1,13 @@
+class Solution:
+    def titleToNumber(self, s: str) -> int:
+        d = len(s)
+        value = 0
+        sdict = {}
+        for i in range(1, 27):
+            sdict[chr(i+64)] = i
+        for i in s:
+            if d > 0:
+                value += sdict[i] * 26**(d-1)
+                d -= 1
+        return value
+
