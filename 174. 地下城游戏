@@ -1,0 +1,49 @@
+class Solution:
+    def calculateMinimumHP(self, dungeon: List[List[int]]) -> int:
+        n, m = len(dungeon), len(dungeon[0])
+        BIG = 10**9
+        dp = [[BIG] * (m + 1) for _ in range(n + 1)]
+        dp[n][m - 1] = dp[n - 1][m] = 1
+        for i in range(n - 1, -1, -1):
+            for j in range(m - 1, -1, -1):
+                minn = min(dp[i + 1][j], dp[i][j + 1])
+                dp[i][j] = max(minn - dungeon[i][j], 1)
+
+        return dp[0][0]
+
+
+# 链接：https://leetcode-cn.com/problems/dungeon-game/solution/di-xia-cheng-you-xi-by-leetcode-solution/
+
+
+
+
+
+
+
+
+
+# 写的递归超时了
+class Solution:
+    def calculateMinimumHP(self, dungeon) -> int:
+        x_length = len(dungeon)
+        if x_length == 0:
+            return
+        y_lenght = len(dungeon[0])
+        result = []
+
+        def my(i, j, total_list):
+
+            if i == x_length - 1 and j == y_lenght - 1:
+                result.append(min(total_list))
+            else:
+                if i + 1 <= x_length - 1:
+                    total_list.append(total_list[-1] + dungeon[i+1][j])
+                    my(i+1, j, total_list[:])
+                    total_list.pop(-1)
+                if j + 1 <= y_lenght-1:
+                    total_list.append(total_list[-1] + dungeon[i][j+1])
+                    my(i, j+1,total_list[:])
+
+        my(0, 0, [dungeon[0][0]])
+
+        return -1*max(result)+1 if -1*max(result)+1>0 else 1
