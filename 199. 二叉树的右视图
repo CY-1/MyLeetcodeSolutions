@@ -1,0 +1,21 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def rightSideView(self, root: TreeNode) -> List[int]:
+        result=[]
+        def my(deepth,tree):
+
+            if tree!=None:
+                if len(result)<deepth+1:
+                    result.append([])
+                result[deepth].append(tree.val)
+                my(deepth+1, tree.left)
+                my(deepth+1, tree.right)
+        my(0,root)
+        return [i[-1] for i in result]
+# 可以优化遍历算法
