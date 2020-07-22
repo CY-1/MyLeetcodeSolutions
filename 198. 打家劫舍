@@ -1,0 +1,14 @@
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        if not nums:
+            return 0
+        nums_length = len(nums)
+        if nums_length==1:
+            return nunm[0]
+        dp=[0]*nums_length
+        dp[0],dp[1]=nums[0],max(nums[0], nums[1])
+        for i in range(2,nums_length):
+            # dp[i]表示第i家 能获得的最大金额
+            # 第i家 如果不偷就是dp[i-1] 如果偷就是dp[i-2]+nums[i]
+            dp[i]=max(dp[i-2]+nums[i],dp[i-1])
+        return dp[nums_length-1]
