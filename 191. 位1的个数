@@ -1,0 +1,14 @@
+class Solution:
+    def hammingWeight(self, n: int) -> int:
+        return bin(n).count("1")
+        
+        
+class Solution:
+    def hammingWeight(self, n: int) -> int:
+        a=0
+        b=1
+        for i in range(32):
+            if (n&b)!=0:
+                a+=1
+            b=b<<1
+        return a
