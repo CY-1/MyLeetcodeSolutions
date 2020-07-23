@@ -1,0 +1,24 @@
+class Solution:
+    def rotate(self, nums: List[int], k: int) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        nums_length=len(nums)
+        k=k%nums_length
+        a=[]
+        a.extend(nums*2)
+        nums[:]=a[nums_length-k:nums_length+nums_length-k]
+# 空间复杂度不为1
+
+class Solution:
+    def rotate(self, nums, k: int) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        nums_length = len(nums)
+        k=k%nums_length
+        a=0
+        while a!=k:
+            nums.insert(0,nums.pop())
+            a+=1
+# 内存空间小的
