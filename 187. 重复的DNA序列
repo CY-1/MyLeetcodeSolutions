@@ -1,0 +1,14 @@
+class Solution:
+    def findRepeatedDnaSequences(self, s: str) -> List[str]:
+        s_length = len(s)
+        if s_length<=10:
+            return []
+        result={}
+        result2=[]
+        for i in range(s_length-9):
+            total=s[i:i+10]
+            if total not in result:
+                result[total]=1
+            else:
+                result2.append(total)
+        return list(set(result2))
