@@ -1,0 +1,21 @@
+class Solution:
+    def numIslands(self, grid) -> int:
+        self.result=0
+        grid_length=len(grid)
+        if grid_length==0:
+            return 0
+        grid_width = len(grid[0])
+        def my(x,y,total):
+            for i in [(0,1),(1,0),(-1,0),(0,-1)]:
+                new_x=x+i[0]
+                new_y=y+i[1]
+                if new_x>=0 and new_y>=0 and new_x<grid_length and new_y<grid_width and total[new_x][new_y]=="1":
+                    total[new_x][new_y]="0"
+                    my(new_x,new_y,total)
+        for i in range(grid_length):
+            for j in range(grid_width):
+                if grid[i][j] == "1":
+                    grid[i][j] = "0"
+                    my(i, j, grid)
+                    self.result += 1
+        return self.result
