@@ -1,0 +1,12 @@
+class Solution:
+    def isHappy(self, n: int) -> bool:
+        visited={}
+        while n not in visited:
+            visited[n]=1
+            if n==1:
+                return True
+            str_n=str(n)
+            n=0
+            for i in str_n:
+                n+=int(i)**2
+        return False
