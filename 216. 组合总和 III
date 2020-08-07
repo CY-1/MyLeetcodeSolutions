@@ -1,0 +1,14 @@
+class Solution:
+    def combinationSum3(self, k: int, n: int):
+        result=[]
+        def my(my_list,total,length):
+            if total>n or length>k:
+                return
+            if total==n and length==k:
+                result.append(my_list)
+                return
+            for i in range(max(my_list+[0])+1,min(10,n-total+1)):
+
+                my(my_list+[i], total+i,length+1)
+        my([], 0, 0)
+        return result
