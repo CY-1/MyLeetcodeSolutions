@@ -1,0 +1,30 @@
+class Solution:
+    def computeArea(self, A: int, B: int, C: int, D: int, E: int, F: int, G: int, H: int) -> int:
+        height_a = set([i for i in range(min([F, H]), max([F,H]))])
+        height_b = set([i for i in range(min([D,B]),max([D,B]))])
+        weight_a = set([i for i in range(E,G)])
+        weight_b = set([i for i in range(A,C)])
+        return (C-A)*(D-B)+(G-E)*(H-F)-len(height_a&height_b)*len(weight_a&weight_b)
+# 自己写的 太慢了 
+# 贴一个别人写的
+class Solution:
+    def computeArea(self, A: int, B: int, C: int, D: int, E: int, F: int, G: int, H: int) -> int:
+        # 调整两个矩形位置, 让第一个矩形靠最左边
+        if A > E:
+            return self.computeArea(E, F, G, H, A, B, C, D)
+        # 没有重叠的情况
+        if B >= H or D <= F or C <= E:
+            return abs(A - C) * abs(B - D) + abs(E - G) * abs(F - H)
+        # 重叠情况
+        # 下边界
+        down = max(A, E)
+        # 上
+        up = min(C, G)
+        # 左
+        left = max(B, F)
+        # 右
+        right = min(D, H)
+        return abs(A - C) * abs(B - D) + abs(E - G) * abs(F - H) - abs(up - down) * abs(left - right)
+
+
+# 链接：https://leetcode-cn.com/problems/rectangle-area/solution/jian-dan-de-kao-lu-by-powcai/
