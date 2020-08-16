@@ -1,0 +1,20 @@
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        nums_length=len(nums)
+        L=[0]*nums_length
+        R=[0]*nums_length
+        L[0]=1
+        L[-1]=1
+        R[0]=1
+        R[-1]=1
+        for i in range(1,nums_length):
+            L[i]=L[i-1]*nums[i-1]
+        for i in range(nums_length-2,-1,-1):
+            R[i]=R[i+1]*nums[i+1]
+        # print(L, R)
+        result=[]
+        for i in range(0,nums_length):
+            result.append(L[i]*R[i])
+        return result
+
+
