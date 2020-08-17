@@ -1,0 +1,37 @@
+class Solution:
+    def searchMatrix(self, matrix, target):
+        """
+        :type matrix: List[List[int]]
+        :type target: int
+        :rtype: bool
+        """
+        width=len(matrix)
+        if width==0:
+            return False
+        length=len(matrix[0])
+        if length==0:
+            return False
+        max_width=width
+        for i in range(width):
+            if matrix[i][0]>target:
+                max_width=i
+                break
+        max_length=length
+        for i in range(length):
+            if matrix[0][i]>target:
+                max_length=i
+                break
+        for i in range(max_width):
+            left=0
+            right=max_length-1
+            while left<=right:
+                mid=(left+right)//2
+                print(i," ",mid)
+                if matrix[i][mid]==target:
+                    return True
+                elif matrix[i][mid]>target:
+                    right=mid-1
+                else:
+                    left=mid+1
+                
+        return False
