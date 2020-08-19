@@ -1,0 +1,35 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+# 寻找第一个最底层第一个出现为None的 确定最底层的数目 就确定了完全二叉树的数目
+class Solution:
+    def countNodes(self, root: TreeNode) -> int:
+        self.a=0
+        self.total=0
+        def my(node,depth):
+            if node.left==None and node.right==None:
+                if self.a==0 or depth==self.a:
+                    self.total+=1
+                self.a=self.a if self.a>=depth else depth
+            else:
+                if node.left!=None:
+                    my(node.left,depth+1)
+                else:
+                    return 
+                if node.right!=None:
+                    my(node.right,depth+1)
+                else:
+                    return
+        if root!=None:
+            my(root, 0)
+            # print(self.a, " ", self.total)
+        else:
+            return 0
+        result=0
+        for i in range(1,self.a+1):
+            result+=2**(i-1)
+        result+=self.total
+        return result
