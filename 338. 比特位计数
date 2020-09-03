@@ -1,0 +1,22 @@
+class Solution {
+    public int[] countBits(int num) {
+        
+        int[] result=new int[num+1];
+        for(int i=0;i<=num;i++){
+            result[i]=hammingWeight(i);
+        }
+        return result;
+    }
+    public int hammingWeight(int n) {
+    int bits = 0;
+    int mask = 1;
+    for (int i = 0; i < 32; i++) {
+        if ((n & mask) != 0) {
+            bits++;
+        }
+        mask <<= 1;
+    }
+    return bits;
+}
+
+}
