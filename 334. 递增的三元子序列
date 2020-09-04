@@ -1,0 +1,17 @@
+class Solution(object):
+    def increasingTriplet(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        a,b =sys.maxsize, sys.maxsize
+        for i in range(len(nums)):
+            if a>=nums[i]:
+                a=nums[i]
+            elif nums[i]<=b:
+                b=nums[i]
+            else:
+                return True
+        return False
+
+        
