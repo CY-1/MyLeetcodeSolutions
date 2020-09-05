@@ -1,0 +1,47 @@
+class Solution:
+    def removeInvalidParentheses(self, s: str) -> List[str]:
+        def check(ss):
+            a=[]
+            if ss==[]:
+                return False
+            for i in ss:
+                if i=="(":
+                    a.append(i)
+                elif i==")":
+                    if not a:
+                        return False
+                    if a.pop(0)=="(":
+                        continue
+                    else:
+                        return False
+            if not a:
+                return True
+            else:
+                return False
+        result=set()
+        s=list(s)
+        self.length=0
+        self.max_length=0
+        self.visited={}
+        def my(s_list):
+            if "".join(s_list) not in self.visited:
+                if len(s_list)>=self.max_length:
+                    flag=check(s_list)
+                    self.visited["".join(s_list)]=flag
+                    if flag:
+                        result.add("".join(s_list))
+                        self.max_length=max(len(s_list),0)
+                    else:
+                            for i in range(len(s_list)):
+                                if s[i]=="(" or s[i]==")":
+                                    my(s[:i]+s_list[i+1:])
+
+        my(s)
+        if not result:
+            return [""]
+        a=len(max(result,key=lambda x:len(x)))
+        result2=[]
+        for i in result:
+            if len(i)==a:
+                result2.append(i)
+        return result2
