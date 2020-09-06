@@ -1,0 +1,13 @@
+class Solution:
+    def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        a={}
+        b={}
+        for i in nums1:
+            a[i]=a.get(i,0)+1
+        for i in nums2:
+            b[i]=b.get(i,0)+1
+        result=[]
+        for i,j in a.items():
+            if i in b:
+                result.extend([i]*min(j,b[i]))
+        return result
