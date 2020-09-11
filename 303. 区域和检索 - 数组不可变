@@ -1,0 +1,7 @@
+class NumArray:
+
+    def __init__(self, nums: List[int]):
+        self.a=nums
+
+    def sumRange(self, i: int, j: int) -> int:
+        return sum(self.a[i:j+1])
