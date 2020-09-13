@@ -1,0 +1,32 @@
+class Solution:
+    # 从nums中选取m个数能构成的最大的数字(数的相对位置不变)
+    def max_one(self, nums: List[int], m: int):
+        n = len(nums)
+        stack = []
+        for i, num in enumerate(nums):
+            while stack and n-i+len(stack) > m and num > stack[-1]:
+                stack.pop()
+            stack.append(num)
+            if len(stack) > m:
+                stack.pop()
+        return stack
+
+    def merge(self, arr1: List[int], arr2: List[int]):
+        res = []
+        while arr1 and arr2:
+            if arr1 > arr2:
+                res.append(arr1.pop(0))
+            else:
+                res.append(arr2.pop(0))
+        res += arr1 + arr2
+        return res
+
+    def maxNumber(self, nums1: List[int], nums2: List[int], k: int) -> List[int]:
+        ans = []
+        for i in range(k+1):
+            if i > len(nums1) or k-i > len(nums2):
+                continue
+            arr1 = self.max_one(nums1, i)
+            arr2 = self.max_one(nums2, k-i)
+            ans = max(ans, self.merge(arr1, arr2))
+        return ans
