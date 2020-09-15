@@ -1,0 +1,12 @@
+class Solution:
+    def countSmaller(self, nums: List[int]) -> List[int]:
+        sortns = []
+        res = []
+        for n in reversed(nums):
+            idx = bisect.bisect_left(sortns, n)
+            res.append(idx)
+            sortns.insert(idx,n)
+        return res[::-1]
+
+
+# 链接：https://leetcode-cn.com/problems/count-of-smaller-numbers-after-self/solution/bu-dao-10xing-dai-ma-zui-jian-dan-fang-fa-mei-you-/
