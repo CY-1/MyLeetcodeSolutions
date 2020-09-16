@@ -1,0 +1,17 @@
+import random
+class Solution:
+
+    def __init__(self, head: ListNode):
+        self.head = head
+        
+    def getRandom(self) -> int:
+        count = 0
+        reserve = 0
+        cur = self.head
+        while cur:
+            count += 1
+            rand = random.randint(1,count)
+            if rand == count:
+                reserve = cur.val
+            cur = cur.next
+        return reserve
