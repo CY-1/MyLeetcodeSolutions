@@ -1,0 +1,27 @@
+class Solution {
+    public static void main(String[] args) {
+        System.out.println(new Solution().combinationSum4(new int[]{1, 2, 3}, 32));
+    }
+    public int combinationSum4(int[] nums, int target) {
+        return my(nums,target,0);
+    }
+    HashMap<Integer,Integer> a=new HashMap<>();
+    public int my(int[] nums,int target,int count){
+        if(target<0){
+            return 0;
+        }
+        if(target==0){
+            return 1;
+        }
+        if(a.containsKey(target)){
+            return a.get(target);
+        }
+        int total=0;
+        for (int i = 0; i < nums.length; i++) {
+            total+=my(nums,target-nums[i],count+1);
+
+        }
+        a.put(target,total);
+        return total;
+    }
+}
