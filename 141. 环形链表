@@ -17,3 +17,35 @@ class Solution:
                     return my(tree.next)
         return my(head)
 # 遍历的过程中修改val值表示来过 即可
+
+// java写法
+
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public boolean hasCycle(ListNode head) {
+        ListNode a=head;
+        
+        if(head==null||head.next==null){
+            return false;
+        }
+        ListNode b=head.next;
+        while (a!=null&&b!=null){
+            if(a==b){
+                return true;
+            }
+            a=a.next;
+            b=b.next!=null ? b.next.next:b.next;
+        }
+        return false;
+    }
+}
