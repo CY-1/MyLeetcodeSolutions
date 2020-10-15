@@ -26,27 +26,27 @@ class Solution {
         if(root==null){
             return null;
         }
-        my(root,0,null);
+        my(root,null);
         return root;
     }
-    public void my(Node root,int depth,Node front){
+    public void my(Node root,Node front){
         if(front!=null){
             front.next=root;
         }
         if(root.left!=null){
             if(front!=null&&front.right!=null)
             {
-                my(root.left,depth+1,front.right);
+                my(root.left,front.right);
             }
             else if(front!=null&&front.left!=null){
-                my(root.left,depth+1,front.left);
+                my(root.left,front.left);
             }
             else{
-                my(root.left,depth+1,null);
+                my(root.left,null);
             }
         }
         if(root.right!=null){
-            my(root.right,depth+1,root.left);
+            my(root.right,root.left);
         }
     }
 }
