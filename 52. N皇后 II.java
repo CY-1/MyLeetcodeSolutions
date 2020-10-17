@@ -18,7 +18,7 @@ class Solution {
         }
         else{
             for(int i=0;i<a[0].length;i++){
-                if(check(a,total,i)){
+                if(check(total,i)){
                     a[total][i]=1;
                     this.flag_y[total]=1;
                     this.flag_x[i]=1;
@@ -30,7 +30,7 @@ class Solution {
             }
         }
     }
-    public boolean check(int[][] a,int i,int j){
+    public boolean check(int i,int j){
         if(this.flag_x[j]==1){
             return false;
         }
