@@ -17,3 +17,33 @@ class Solution:
             flag_node=a
             current=current.next
         return head
+
+JAVA
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode oddEvenList(ListNode head) {
+        if(head==null)return head;
+        ListNode current=head.next;
+        ListNode right=head;
+        int i=0;
+        while(current!=null&&current.next!=null){
+                ListNode a=current.next;
+                current.next=current.next.next;
+                a.next=right.next;
+                right.next=a;
+                right=right.next;
+                current=current.next;
+        }
+        return head;
+    }
+} 
+
