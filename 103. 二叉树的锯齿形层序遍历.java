@@ -1,35 +1,34 @@
 class Solution {
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-        List<List<Integer>> ans = new LinkedList<List<Integer>>();
-        if (root == null) {
-            return ans;
+        List<List<Integer>> a=new LinkedList();
+        if(root==null){
+            return a;
         }
-
-        Queue<TreeNode> nodeQueue = new LinkedList<TreeNode>();
-        nodeQueue.offer(root);
-        boolean isOrderLeft = true;
-
-        while (!nodeQueue.isEmpty()) {
-            Deque<Integer> levelList = new LinkedList<Integer>();
-            int size = nodeQueue.size();
-            for (int i = 0; i < size; ++i) {
-                TreeNode curNode = nodeQueue.poll();
-                if (isOrderLeft) {
-                    levelList.offerLast(curNode.val);
-                } else {
-                    levelList.offerFirst(curNode.val);
+        
+        List<Integer> b;
+        Deque<TreeNode> c=new LinkedList<>();
+        c.add(root);
+        boolean flag=true;
+        while(c.size()>0){
+            b=new LinkedList();
+            int size = c.size();
+            for(int i=0;i<size;i++){
+                TreeNode pop = c.poll();
+                if(flag){
+                    b.add(pop.val);
+                }else{
+                    b.add(0, pop.val);
                 }
-                if (curNode.left != null) {
-                    nodeQueue.offer(curNode.left);
+                if(pop.left!=null){
+                    c.add(pop.left);
                 }
-                if (curNode.right != null) {
-                    nodeQueue.offer(curNode.right);
+                if(pop.right!=null){
+                    c.add(pop.right);
                 }
             }
-            ans.add(new LinkedList<Integer>(levelList));
-            isOrderLeft = !isOrderLeft;
+            flag=!flag;
+            a.add(b);
         }
-
-        return ans;
+    return a;
     }
 }
