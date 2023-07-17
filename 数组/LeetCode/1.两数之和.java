@@ -1,4 +1,4 @@
-package 数组;
+package 数组.LeetCode;
 /*
  * @lc app=leetcode.cn id=1 lang=java
  *
