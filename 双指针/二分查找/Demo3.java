@@ -1,5 +1,5 @@
 package 数组.二分查找;
-
+//仿照python的bisect库编写
 public class Demo3 {
     public static void main(String[] args) {
         int[] nums={1,2,3,4,5,6,7};

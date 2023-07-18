@@ -1,2 +1,2 @@
 # MyLeetcodeSolutions
-记录一个python菜鸡刷leetcode的心碎之路
+记录学习数据结构和算法的模板和相关练习题的思路

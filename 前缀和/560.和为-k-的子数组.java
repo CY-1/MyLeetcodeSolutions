@@ -1,4 +1,4 @@
-package 前缀和;
+package 数组.前缀和;
 /*
  * @lc app=leetcode.cn id=560 lang=java
  *
