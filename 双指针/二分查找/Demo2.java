@@ -1,4 +1,4 @@
-package 数组.二分查找;
+package 双指针.二分查找;
 
 public class Demo2 {
     // 左闭右开写法 且不能有重复 如果数字重复则返回结果不定
