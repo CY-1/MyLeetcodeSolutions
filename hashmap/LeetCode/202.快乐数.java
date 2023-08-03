@@ -1,4 +1,4 @@
-package hashmap;
+package hashmap.LeetCode;
 /*
  * @lc app=leetcode.cn id=202 lang=java
  *
