@@ -2,9 +2,9 @@ package 双指针.二分查找;
 //仿照python的bisect库编写
 public class Demo3 {
     public static void main(String[] args) {
-        int[] nums={1,2,3,4,5,6,7};
+        int[] nums={1,2,3,3,4,5,6,7};
         System.out.println(new Demo3().search_left(nums, 3));
-        System.out.println(new Demo3().search_right(new int[] { 1, 2, 3, 4, 5 }, 0));
+        // System.out.println(new Demo3().search_right(new int[] { 1, 2, 3, 4, 5 }, 0));
     }
     // 左闭右开 如果有重复元素 返回最左边的应该插入的位置 如果没有就返回应该插入的位置
     // 要注意可能返回0到nums.length
